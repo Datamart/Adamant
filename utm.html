@@ -1,0 +1,80 @@
+<!--#config timefmt="%s" -->
+<!--#set var="GA_ACCOUNT"   value="UA-XXXXXX-YY" -->
+<!--#set var="LOCAL_GIF"    value="/__utm.gif" -->
+<!--#set var="VISITOR_ID"   value="1" -->
+<!--#set var="VISITOR_UA"   value="1" -->
+<!--#set var="DOMAIN_HASH"  value="1" -->
+<!--#set var="UTM_VERSION"  value="5.4.6dc" -->
+<!--#set var="UTM_LANGUAGE" value="-" -->
+<!--#set var="UTM_REFERER"  value="-" -->
+<!--#set var="UTM_SOURCE"   value="%28none%29" -->
+<!--#set var="UTM_MEDIUM"   value="%28none%29" -->
+<!--#set var="UTM_CAMPAIGN" value="%28none%29" -->
+<!--#set var="UTM_TITLE"    value="" -->
+<!--#set var="UTM_CHARSET"  value="UTF-8" -->
+
+<!--#if expr="$QUERY_STRING = /utm_source=([_a-zA-Z0-9\-\.]+)/" -->
+  <!--#set var="UTM_SOURCE" value="$1" -->
+<!--#endif -->
+
+<!--#if expr="$QUERY_STRING = /utm_medium=([_a-zA-Z0-9\-\.]+)/" -->
+  <!--#set var="UTM_MEDIUM" value="$1" -->
+<!--#endif -->
+
+<!--#if expr="$QUERY_STRING = /utm_campaign=([_a-zA-Z0-9\-\.]+)/" -->
+  <!--#set var="UTM_CAMPAIGN" value="$1" -->
+<!--#endif -->
+
+<!--#if expr="$HTTP_ACCEPT_LANGUAGE = /([a-zA-Z]{2})/" -->
+  <!--#set var="UTM_LANGUAGE" value="$1" -->
+<!--#endif -->
+
+<!--#if expr="$REMOTE_ADDR = /([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/" -->
+  <!--#set var="VISITOR_ID" value="$1$2$3$4" -->
+<!--#endif -->
+
+<!--#if expr="$VISITOR_UA" -->
+  <!--#if expr="$HTTP_USER_AGENT = /([0-9]+)[a-zA-Z\. \(\)_;,\/]*([0-9]+)*[a-zA-Z\. \(\)_;,\/]*([0-9]+)*[a-zA-Z\. \(\)_;,\/]*([0-9]+)*[a-zA-Z\. \(\)_;,\/]*([0-9]+)*[a-zA-Z\. \(\)_;,\/]*([0-9]+)*[a-zA-Z\. \(\)_;,\/]*([0-9]+)*[a-zA-Z\. \(\)_;,\/]*([0-9]+)*[a-zA-Z\. \(\)_;,\/]*([0-9]+)*/" -->
+    <!--#set var="USER_AGENT_ID" value="$1$2$3$4$5$6$7$8$9" -->
+    <!--#if expr="$USER_AGENT_ID = /[0-9]{2}([0-9]{12})/" -->
+      <!--#set var="VISITOR_ID" value="$1" -->
+    <!--#endif -->
+  <!--#endif -->
+<!--#endif -->
+
+<!--#if expr="$SERVER_ADDR = /([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/" -->
+  <!--#set var="DOMAIN_HASH" value="$1$2$3$4" -->
+<!--#endif -->
+
+<!--#if expr="$HTTP_REFERER = /https?\:\/\/([a-z\.]+)/"-->
+  <!--#set var="UTM_SOURCE" value="$1" -->
+  <!--#if expr="$HTTP_HOST = $UTM_SOURCE" -->
+    <!--#set var="UTM_SOURCE" value="%28direct%29" -->
+  <!--#endif -->
+<!--#endif -->
+
+<!--#if expr="$HTTP_REFERER" -->
+  <!--#set var="UTM_REFERER" value="$HTTP_REFERER" -->
+<!--#endif -->
+
+<!--#set var="UTMA" value="${DOMAIN_HASH}.${VISITOR_ID}.${DATE_GMT}.${DATE_GMT}.${DATE_GMT}.1" -->
+<!--#if expr="$HTTP_COOKIE = /__utma\=(([0-9]+)(\.([0-9]+))+)/"-->
+  <!--#set var="UTMA" value="$1" -->
+<!--#endif -->
+
+<!--#set var="UTMZ" value="${DOMAIN_HASH}.${DATE_GMT}.1.1" -->
+<!--#if expr="$HTTP_COOKIE = /__utmz\=(([0-9]+)(\.([0-9]+))+)/"-->
+  <!--#set var="UTMZ" value="$1" -->
+<!--#endif -->
+
+<!--#set var="UTM_GCLID" value="" -->
+<!--#if expr="$QUERY_STRING = /gclid=([_a-zA-Z0-9\=]+)/" -->
+  <!--#set var="UTM_GCLID" value="utmgclid=$1%7C" -->
+<!--#endif -->
+
+<!--#set var="UTM_COOKIE" value="__utma%3D${UTMA}%3B%2B__utmz%3D${UTMZ}.utmcsr%3D${UTM_SOURCE}%7C${UTM_GCLID}utmccn%3D${UTM_CAMPAIGN}%7Cutmcmd%3D${UTM_MEDIUM}%3B" -->
+
+<!--#if expr="$LOCAL_GIF" -->
+<img style="display:none;" width="1" height="1" alt="Urchin Traffic Monitor" src='<!--#echo var="LOCAL_GIF"-->?utmwv=<!--#echo var="UTM_VERSION"-->&amp;<!--#if expr="$UTM_CHARSET" -->utmcs=UTF-8&amp;<!--#endif -->utmje=-&amp;utmfl=-&amp;utmsr=-&amp;utmsc=-&amp;utmac=<!--#echo var="GA_ACCOUNT"-->&amp;<!--#if expr="$UTM_TITLE" -->utmdt=<!--#echo encoding="url" var="UTM_TITLE"-->&amp;<!--#endif -->utmn=<!--#echo var="DATE_GMT"-->&amp;utmhn=<!--#echo var="HTTP_HOST" encoding="url" -->&amp;utmp=<!--#echo var="REQUEST_URI" encoding="url" -->&amp;utmr=<!--#echo var="UTM_REFERER" encoding="url" -->&amp;utmul=<!--#echo var="UTM_LANGUAGE" encoding="url" -->&amp;utmcc=<!--#echo var="UTM_COOKIE"-->'>
+<!--#endif -->
+<img style="display:none;" width="1" height="1" alt="Google Analytics Tracker" src='http://stats.g.doubleclick.net/__utm.gif?utmwv=<!--#echo var="UTM_VERSION"-->&amp;<!--#if expr="$UTM_CHARSET" -->utmcs=UTF-8&amp;<!--#endif -->utmje=-&amp;utmfl=-&amp;utmsr=-&amp;utmsc=-&amp;utmac=<!--#echo var="GA_ACCOUNT"-->&amp;<!--#if expr="$UTM_TITLE" -->utmdt=<!--#echo encoding="url" var="UTM_TITLE"-->&amp;<!--#endif -->utmn=<!--#echo var="DATE_GMT"-->&amp;utmhn=<!--#echo var="HTTP_HOST" encoding="url" -->&amp;utmp=<!--#echo var="REQUEST_URI" encoding="url" -->&amp;utmr=<!--#echo var="UTM_REFERER" encoding="url" -->&amp;utmul=<!--#echo var="UTM_LANGUAGE" encoding="url" -->&amp;utmcc=<!--#echo var="UTM_COOKIE"-->'>
