@@ -17,4 +17,5 @@ Configuration:
 * `UTM_CAMPAIGN` - Default 'utm_campaign' value;
 * `UTM_TITLE` - Default 'utmdt' value;
 * `UTM_CHARSET` - Default document charset;
+* `USE_NOSCRIPT` - Wraps with `<noscript>` tag.
 

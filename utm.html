@@ -12,6 +12,7 @@
 <!--#set var="UTM_CAMPAIGN" value="%28none%29" -->
 <!--#set var="UTM_TITLE"    value="" -->
 <!--#set var="UTM_CHARSET"  value="UTF-8" -->
+<!--#set var="USE_NOSCRIPT" value="1" -->
 
 <!--#if expr="$QUERY_STRING = /utm_source=([_a-zA-Z0-9\-\.]+)/" -->
   <!--#set var="UTM_SOURCE" value="$1" -->
@@ -78,7 +79,11 @@
 
 <!--#set var="UTM_COOKIE" value="__utma%3D${UTMA}%3B%2B__utmz%3D${UTMZ}.utmcsr%3D${UTM_SOURCE}%7C${UTM_GCLID}utmccn%3D${UTM_CAMPAIGN}%7Cutmcmd%3D${UTM_MEDIUM}%3B" -->
 
+
+<!--#if expr="$USE_NOSCRIPT" --><noscript><!--#endif -->
 <!--#if expr="$LOCAL_GIF" -->
 <img style="display:none;" width="1" height="1" alt="Urchin Traffic Monitor" src='<!--#echo var="LOCAL_GIF"-->?utmwv=<!--#echo var="UTM_VERSION"-->&amp;<!--#if expr="$UTM_CHARSET" -->utmcs=UTF-8&amp;<!--#endif -->utmje=-&amp;utmfl=-&amp;utmsr=-&amp;utmsc=-&amp;utmac=<!--#echo var="GA_ACCOUNT"-->&amp;<!--#if expr="$UTM_TITLE" -->utmdt=<!--#echo encoding="url" var="UTM_TITLE"-->&amp;<!--#endif -->utmn=<!--#echo var="DATE_GMT"-->&amp;utmhn=<!--#echo var="HTTP_HOST" encoding="url" -->&amp;utmp=<!--#echo var="REQUEST_URI" encoding="url" -->&amp;utmr=<!--#echo var="UTM_REFERER" encoding="url" -->&amp;utmul=<!--#echo var="UTM_LANGUAGE" encoding="url" -->&amp;utmcc=<!--#echo var="UTM_COOKIE"-->'>
 <!--#endif -->
 <img style="display:none;" width="1" height="1" alt="Google Analytics Tracker" src='https://stats.g.doubleclick.net/__utm.gif?utmwv=<!--#echo var="UTM_VERSION"-->&amp;<!--#if expr="$UTM_CHARSET" -->utmcs=UTF-8&amp;<!--#endif -->utmje=-&amp;utmfl=-&amp;utmsr=-&amp;utmsc=-&amp;utmac=<!--#echo var="GA_ACCOUNT"-->&amp;<!--#if expr="$UTM_TITLE" -->utmdt=<!--#echo encoding="url" var="UTM_TITLE"-->&amp;<!--#endif -->utmn=<!--#echo var="DATE_GMT"-->&amp;utmhn=<!--#echo var="HTTP_HOST" encoding="url" -->&amp;utmp=<!--#echo var="REQUEST_URI" encoding="url" -->&amp;utmr=<!--#echo var="UTM_REFERER" encoding="url" -->&amp;utmul=<!--#echo var="UTM_LANGUAGE" encoding="url" -->&amp;utmcc=<!--#echo var="UTM_COOKIE"-->'>
+<!--#if expr="$USE_NOSCRIPT" --></noscript><!--#endif -->
+
