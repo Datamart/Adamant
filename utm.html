@@ -1,6 +1,7 @@
 <!--#config timefmt="%s" -->
-<!--#set var="GA_ACCOUNT"   value="UA-XXXXXX-YY" -->
-<!--#set var="LOCAL_GIF"    value="/__utm.gif" -->
+<!--#set var="GA_ACCOUNT"   value="UA-XXXXXX-YY"-->
+<!--#set var="LOCAL_GIF"    value="/__utm.gif"-->
+<!--#set var="PIXEL_GIF"    value="https://stats.g.doubleclick.net/__utm.gif"-->
 <!--#set var="VISITOR_ID"   value="1" -->
 <!--#set var="VISITOR_UA"   value="1" -->
 <!--#set var="DOMAIN_HASH"  value="1" -->
@@ -74,16 +75,38 @@
 
 <!--#set var="UTM_GCLID" value="" -->
 <!--#if expr="$QUERY_STRING = /gclid=([_a-zA-Z0-9\=]+)/" -->
-  <!--#set var="UTM_GCLID" value="utmgclid=$1%7C" -->
+  <!--#set var="UTM_GCLID" value="utmgclid%3D$1%7C" -->
 <!--#endif -->
 
 <!--#set var="UTM_COOKIE" value="__utma%3D${UTMA}%3B%2B__utmz%3D${UTMZ}.utmcsr%3D${UTM_SOURCE}%7C${UTM_GCLID}utmccn%3D${UTM_CAMPAIGN}%7Cutmcmd%3D${UTM_MEDIUM}%3B" -->
 
+<!--#set var="UTM_PARAMS" value="utmac=${GA_ACCOUNT}&utmwv=${UTM_VERSION}&utmhn=${HTTP_HOST}&utmn=${DATE_GMT}&utmul=${UTM_LANGUAGE}&utmje=-&utmfl=-&utmsr=-&utmsc=-"-->
+
+<!--#if expr="$QUERY_STRING = /([_a-zA-Z0-9\-]+=[_a-zA-Z0-9\-]+)(\&([_a-zA-Z0-9\-]+=[_a-zA-Z0-9\-]+))?(\&([_a-zA-Z0-9\-]+=[_a-zA-Z0-9\-]+))?(\&([_a-zA-Z0-9\-]+=[_a-zA-Z0-9\-]+))?(\&([_a-zA-Z0-9\-]+=[_a-zA-Z0-9\-]+))?/"-->
+  <!--#set var="QUERY_STRING_ESCAPED" value="$1" -->
+  <!--#if expr="$3"-->
+    <!--#set var="QUERY_STRING_ESCAPED" value="${QUERY_STRING_ESCAPED}%26$3"-->
+      <!--#if expr="$5"-->
+        <!--#set var="QUERY_STRING_ESCAPED" value="${QUERY_STRING_ESCAPED}%26$5"-->
+        <!--#if expr="$7"-->
+          <!--#set var="QUERY_STRING_ESCAPED" value="${QUERY_STRING_ESCAPED}%26$7"-->
+          <!--#if expr="$9"-->
+            <!--#set var="QUERY_STRING_ESCAPED" value="${QUERY_STRING_ESCAPED%26}$9"-->
+          <!--#endif -->
+        <!--#endif -->
+      <!--#endif -->
+  <!--#endif -->
+<!--#endif -->
+
+<!--#set var="UTM_PATH" value="" -->
+<!--#if expr="$QUERY_STRING_ESCAPED" -->
+  <!--#set var="UTM_PATH" value="${DOCUMENT_URI}%3F${QUERY_STRING_ESCAPED}" -->
+<!--#endif -->
 
 <!--#if expr="$USE_NOSCRIPT" --><noscript><!--#endif -->
 <!--#if expr="$LOCAL_GIF" -->
-<img style="display:none;" width="1" height="1" alt="Urchin Traffic Monitor" src='<!--#echo var="LOCAL_GIF"-->?utmwv=<!--#echo var="UTM_VERSION"-->&amp;<!--#if expr="$UTM_CHARSET" -->utmcs=UTF-8&amp;<!--#endif -->utmje=-&amp;utmfl=-&amp;utmsr=-&amp;utmsc=-&amp;utmac=<!--#echo var="GA_ACCOUNT"-->&amp;<!--#if expr="$UTM_TITLE" -->utmdt=<!--#echo encoding="url" var="UTM_TITLE"-->&amp;<!--#endif -->utmn=<!--#echo var="DATE_GMT"-->&amp;utmhn=<!--#echo var="HTTP_HOST" encoding="url" -->&amp;utmp=<!--#echo var="REQUEST_URI" encoding="url" -->&amp;utmr=<!--#echo var="UTM_REFERER" encoding="url" -->&amp;utmul=<!--#echo var="UTM_LANGUAGE" encoding="url" -->&amp;utmcc=<!--#echo var="UTM_COOKIE"-->'>
+<img style="display:none;" width="1" height="1" alt="Urchin Traffic Monitor" src="<!--#echo var='LOCAL_GIF'-->?<!--#echo var='UTM_PARAMS'-->&amp;<!--#if expr='$UTM_CHARSET'-->utmcs=<!--#echo var='UTM_CHARSET'-->&amp;<!--#endif --><!--#if expr='$UTM_TITLE'-->utmdt=<!--#echo encoding='url' var='UTM_TITLE'-->&amp;<!--#endif -->utmp=<!--#if expr='$UTM_PATH'--><!--#echo var='UTM_PATH'--><!--#else--><!--#echo encoding='url' var='REQUEST_URI'--><!--#endif-->&amp;utmr=<!--#echo encoding='url' var='UTM_REFERER'-->&amp;utmcc=<!--#echo var='UTM_COOKIE'-->">
 <!--#endif -->
-<img style="display:none;" width="1" height="1" alt="Google Analytics Tracker" src='https://stats.g.doubleclick.net/__utm.gif?utmwv=<!--#echo var="UTM_VERSION"-->&amp;<!--#if expr="$UTM_CHARSET" -->utmcs=UTF-8&amp;<!--#endif -->utmje=-&amp;utmfl=-&amp;utmsr=-&amp;utmsc=-&amp;utmac=<!--#echo var="GA_ACCOUNT"-->&amp;<!--#if expr="$UTM_TITLE" -->utmdt=<!--#echo encoding="url" var="UTM_TITLE"-->&amp;<!--#endif -->utmn=<!--#echo var="DATE_GMT"-->&amp;utmhn=<!--#echo var="HTTP_HOST" encoding="url" -->&amp;utmp=<!--#echo var="REQUEST_URI" encoding="url" -->&amp;utmr=<!--#echo var="UTM_REFERER" encoding="url" -->&amp;utmul=<!--#echo var="UTM_LANGUAGE" encoding="url" -->&amp;utmcc=<!--#echo var="UTM_COOKIE"-->'>
+<img style="display:none;" width="1" height="1" alt="Google Analytics Tracker" src="<!--#echo var='PIXEL_GIF'-->?<!--#echo var='UTM_PARAMS'-->&amp;<!--#if expr='$UTM_CHARSET'-->utmcs=<!--#echo var='UTM_CHARSET'-->&amp;<!--#endif --><!--#if expr='$UTM_TITLE'-->utmdt=<!--#echo encoding='url' var='UTM_TITLE'-->&amp;<!--#endif -->utmp=<!--#if expr='$UTM_PATH'--><!--#echo var='UTM_PATH'--><!--#else--><!--#echo encoding='url' var='REQUEST_URI'--><!--#endif-->&amp;utmr=<!--#echo encoding='url' var='UTM_REFERER'-->&amp;utmcc=<!--#echo var='UTM_COOKIE'-->">
 <!--#if expr="$USE_NOSCRIPT" --></noscript><!--#endif -->
 
