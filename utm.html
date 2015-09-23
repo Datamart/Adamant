@@ -29,6 +29,10 @@
   <!--#set var="UTM_LANGUAGE" value="$1" -->
 <!--#endif -->
 
+<!--#if expr="$CONTENT_TYPE = /charset=([_a-zA-Z0-9\-]+)/" -->
+  <!--#set var="UTM_CHARSET" value="$1" -->
+<!--#endif -->
+
 <!--#if expr="$REMOTE_ADDR = /([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/" -->
   <!--#set var="VISITOR_ID" value="$1$2$3$4" -->
 <!--#endif -->
