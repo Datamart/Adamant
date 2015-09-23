@@ -6,6 +6,7 @@ SSI (Server Side Includes):
 * [wikipedia](https://en.wikipedia.org/wiki/Server_Side_Includes)
 * [nginx](http://nginx.org/en/docs/http/ngx_http_ssi_module.html)
 * [apache](http://httpd.apache.org/docs/current/howto/ssi.html)
+* [iis](https://www.iis.net/configreference/system.webserver/serversideinclude)
 
 Configuration:
 * `GA_ACCOUNT` - Google Analytics web-property ID;
