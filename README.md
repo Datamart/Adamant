@@ -4,8 +4,9 @@ SSI Analytics is a simple SSI script that tracks visitors using Google Analytics
 
 SSI (Server Side Includes):  
 * [wikipedia](https://en.wikipedia.org/wiki/Server_Side_Includes)
-* [nginx](http://nginx.org/en/docs/http/ngx_http_ssi_module.html)
 * [apache](http://httpd.apache.org/docs/current/howto/ssi.html)
+* [tomcat](https://tomcat.apache.org/tomcat-7.0-doc/ssi-howto.html)
+* [nginx](http://nginx.org/en/docs/http/ngx_http_ssi_module.html)
 * [iis](https://www.iis.net/configreference/system.webserver/serversideinclude)
 
 Configuration:
