@@ -20,3 +20,4 @@ Configuration:
 * `UTM_CHARSET` - Default document charset;
 * `USE_NOSCRIPT` - Wraps with `<noscript>` tag.
 
+For more information please visit [SSI Analytics project page](http://datamart.github.io/ssi-analytics/).
