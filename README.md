@@ -1,6 +1,6 @@
-# SSI Analytics
+# Adamant Analytics
 
-SSI Analytics is a simple SSI script that tracks visitors using Google Analytics with disabled javascript and cookie.
+Adamant Analytics is a simple SSI script that tracks visitors using Google Analytics with disabled javascript and cookie.
 
 SSI (Server Side Includes):  
 * [wikipedia](https://en.wikipedia.org/wiki/Server_Side_Includes)
@@ -20,4 +20,4 @@ Configuration:
 * `UTM_CHARSET` - Default document charset;
 * `USE_NOSCRIPT` - Wraps with `<noscript>` tag.
 
-For more information please visit [SSI Analytics project page](http://datamart.github.io/ssi-analytics/).
+For more information please visit [Adamant Analytics project page](http://datamart.github.io/ssi-analytics/).
