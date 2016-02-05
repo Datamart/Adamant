@@ -1,6 +1,6 @@
 # Adamant Analytics [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-Adamant Analytics is a simple SSI script that tracks visitors using Google Analytics with disabled javascript and cookie.
+Adamant Analytics is a simple SSI solution that tracks visitors using Google Analytics with disabled javascript and cookie.
 
 SSI (Server Side Includes):  
 * [wikipedia](https://en.wikipedia.org/wiki/Server_Side_Includes)
